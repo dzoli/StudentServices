@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="css/styleHome.css" />
+	<title>Home</title>
+</h:head>
+
+<h:body style="background-image:url('../images/lab.jpg')">
+	<f:view>
+		<h:form>
+
+			 <p:growl id="growl" showDetail="true" sticky="true" />  
+
+			<div class="login-panel">
+				<p:panel class="panel" header="Prijava ">
+					<div class="crveno-dugme-prikaz">
+						<div class="podaci">
+							<h:outputText
+								value="Korisnicko ime profesora / broj indeksa studenta: " />
+							<h:inputText value="#{userLoginView.usernamePS}" />
+							<h:outputText value="Lozinka: " />
+							<h:inputSecret value="#{userLoginView.passwordPS}" />
+						</div>
+						<!-- redirekcija, validacija -->
+						<p:commandButton value="Login" action="#{userLoginView.loginUser}"
+									     execute="@form" class="crvenoDugme" update="growl">
+						</p:commandButton>
+					</div>
+					<f:facet name="footer">
+						<div class="ui-corner-all">
+							<h:outputText class="napomena"
+								value="korisnicko ime Profesora ne sme da sadrzi karakter  ' / '" />
+						</div>
+					</f:facet>
+				</p:panel>
+			</div>
+
+
+			<h:form>
+				<div class="AdminBtnPosition">
+					<h:outputLink value="javascript:void(0)"
+						onclick="PF('dlg').show();" title="login">
+						<p:commandButton value="administrator" class="dugmeAdmin" />
+					</h:outputLink>
+				</div>
+
+				<p:dialog header="Prijava administratora" modal="true"
+						  widgetVar="dlg" resizable="false">
+					<h:form id="log">
+						<p:growl id="growl1" showDetail="true" sticky="true" />  
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="username" value="Username: " />
+							<p:inputText id="username" value="#{userLoginView.username}" />
+							<h:outputLabel for="password" value="Password: " />
+							<p:password id="password" value="#{userLoginView.password}" />
+							<br />
+							<p:commandButton id="logAdminBtn" value="Login"
+								action="#{userLoginView.login}" execute="@form"
+								class="logAdminBtn" update="growl1">
+							</p:commandButton>
+						</h:panelGrid>
+					</h:form>
+				</p:dialog>
+			</h:form>
+
+
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>

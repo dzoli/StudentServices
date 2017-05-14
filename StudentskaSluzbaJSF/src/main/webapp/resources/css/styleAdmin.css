@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+body {
+	background: #ffffe8;
+}
+
+.topPanel {
+	position: fixed;
+	display: flex;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 70px;
+	border-bottom: solid;
+	border-bottom-width: 7px;
+	border-color:#585858;
+	z-index: 1;
+	font-size:28px;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.nameAdmin{
+	width:40%;
+}
+
+
+.choosePanel {
+	position: fixed;
+	top: 70px;
+	border: solid;
+	height: 600px;
+	border-width: 1px;
+	border-radius: 7px;
+}
+
+#Prof{
+	background: green;
+}
+
+.nameAdmin{
+	background: grey;
+	opacity: 0.4;
+	border: 3px solid rgba(0, 0, 0, .3);
+	border-radius: 7px;
+	border-color:grey;
+	text-align: center;
+	margin: 40px 400px 40px 400px;
+}

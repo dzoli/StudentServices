@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.2.final using JasperReports Library version 6.2.2  -->
+<!-- 2016-06-26T16:46:36 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="StudentiBrojPolozenih" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f368d70f-41ab-4a3d-8b14-2b577c672a22">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="datum" class="java.util.Date"/>
+	<parameter name="izabraniDep" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="student.brindeksa" class="java.lang.String"/>
+	<field name="student.godinastudija" class="java.lang.Integer"/>
+	<field name="student.ime" class="java.lang.String"/>
+	<field name="student.prezime" class="java.lang.String"/>
+	<field name="brPolozenih" class="java.lang.Integer"/>
+	<variable name="zbirnoStanje" class="java.lang.String">
+		<variableExpression><![CDATA["Ukupno je na departmanu:  " +  $V{REPORT_COUNT} + " studenata"]]></variableExpression>
+	</variable>
+	<variable name="naslov" class="java.lang.String">
+		<variableExpression><![CDATA["Izvestaj o studentima sa departmana:  "+ $P{izabraniDep}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="80" y="10" width="399" height="30" uuid="922824d2-c377-4024-9255-a1f7a6f6fb92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{naslov}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="31" width="111" height="30" backcolor="rgba(0, 60, 255, 0.44313726)" uuid="bf7a0062-d514-4461-88b3-69157ef6e384"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Br. indeksa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="31" width="111" height="30" backcolor="rgba(0, 60, 255, 0.44313726)" uuid="a4688aa9-051e-4751-a4c4-91f89863bb17"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Godina studija]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="31" width="111" height="30" backcolor="rgba(0, 60, 255, 0.44313726)" uuid="5b467310-85fa-417a-a581-c43d766b29f2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Ime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="31" width="111" height="30" backcolor="rgba(0, 60, 255, 0.44313726)" uuid="0e87f4a3-5439-4d28-be81-340d52e4af32"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Prezime]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="31" width="111" height="30" backcolor="rgba(0, 60, 255, 0.44313726)" uuid="a2d44929-4c0b-40b9-b6fd-de67c1e9d5cf"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Br. polozenih]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="30" uuid="7d4c04aa-26d9-480b-919b-c9c4b15fd91e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{student.brindeksa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="111" height="30" uuid="ba4a56dd-48bd-49b6-a4b7-c176f11dc8ae"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{student.godinastudija}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="111" height="30" uuid="31c108b4-4d5e-47a1-a435-a025e889d237"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{student.ime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="0" width="111" height="30" uuid="0d084d42-d942-4f39-bd38-098f0578c63c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{student.prezime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="111" height="30" uuid="c6c9bff0-4aad-4fab-b388-f50dbc802b6e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{brPolozenih}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="360" y="0" width="190" height="30" uuid="1d5d1aad-ff90-4beb-bae1-22f7792fe97a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{datum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="360" height="30" uuid="3c08d789-75bb-467e-9c42-e7a6672a83e2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{zbirnoStanje}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

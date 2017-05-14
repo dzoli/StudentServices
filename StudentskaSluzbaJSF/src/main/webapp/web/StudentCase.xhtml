@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Student page</title>
+	<h:outputStylesheet name="css/styleStudent.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<h:form>
+			<div class="topPanel"
+				style="background-image: url('../images/lab.jpg')">
+				<div id="nameStudent">
+					<p:outputLabel class="imeStudenta"
+						value="Dobro došli #{userLoginView.imePrezimeStudenta}!" />
+				</div>
+			</div>
+			<p:fieldset legend="Prijava ispita" style="margin-bottom:20px"
+				class="formPanel">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Datum prijave: " />
+					<p:calendar value="#{studentBean.datumPrijave}"
+								widgetVar="calendar_widget_name"
+								onclick="PF('calendar_widget_name').setDate(new Date());" />
+					<p:outputLabel value="Ispitni rok: " />
+					<p:selectOneMenu value="#{studentBean.ispitniRok}">
+						<f:selectItem itemLabel="Januar" itemValue="Januar" />
+						<f:selectItem itemLabel="Februar" itemValue="Februar" />
+						<f:selectItem itemLabel="April" itemValue="April" />
+						<f:selectItem itemLabel="Jun" itemValue="Jun" />
+						<f:selectItem itemLabel="Septembar" itemValue="Septembar" />
+						<f:selectItem itemLabel="Oktobar" itemValue="Oktobar" />
+					</p:selectOneMenu>
+					<p:outputLabel value="Koji put izlazite: " />
+					<p:spinner value="#{studentBean.brojIzlazaka}"  min="1" max="6"/>
+				</h:panelGrid>
+					<br />
+				<div class="tabPredmeti">
+					<!-- tabela sa mogucnoscu visestrukog odabira -->
+					<h:panelGrid columns="1">
+						<p:dataTable var="p" value="#{studentBean.predmetiSaStudentovogDepartmana}"  
+									selection="#{studentBean.izabraniPredmeti}" rowKey="#{p.predmetid}">
+							<f:facet name="header">
+								Izaberite predmete za prijavu
+							</f:facet>
+							 <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+							<p:column headerText="Id">
+								<h:outputText value="#{p.predmetid}"/>				
+							</p:column>
+							<p:column headerText="Naslov">
+								<h:outputText value="#{p.naziv}"/>				
+							</p:column>
+							<p:column headerText="Tip">
+								<h:outputText value="#{p.tip}"/>				
+							</p:column>
+							<p:column headerText="semestar">
+								<h:outputText value="#{p.semestar}"/>				
+							</p:column>
+						</p:dataTable>		
+					</h:panelGrid>
+				</div>
+				
+				<br/>
+					<p:commandButton value="Prijavi predmete" action="#{studentBean.prijaviPredmete()}"
+								     execute="@form" update="toUpdate, @form"/>
+				
+					<p:outputPanel id="toUpdate" >
+  						<p:panel id="myPanel" rendered="#{studentBean.porukaPrijava!=null}">
+							<p:outputLabel value="#{studentBean.porukaPrijava}" />
+  						</p:panel>
+					</p:outputPanel>
+			
+			</p:fieldset>
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>

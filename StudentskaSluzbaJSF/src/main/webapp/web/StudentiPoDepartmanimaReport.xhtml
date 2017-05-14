@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Izvestaj</title>
+	<h:outputStylesheet name="css/styleIzvestaji.css" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form>
+			<div class="topPanel"
+				style="background-image: url('../images/lab.jpg')">
+				<div id="nameStudent">
+					<p:outputLabel class="imeStudenta"
+						value="Izvestaj o studentima sa svih departmana" />
+				</div>
+			</div>
+
+			<p:fieldset legend="Izvestaj" class="formPanel">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Izaberite godinu studija: " />
+					<p:selectOneMenu value="#{reportsBean.godinaStudija}">
+						<f:selectItem itemLabel="Prva" itemValue="1" />
+						<f:selectItem itemLabel="Druga" itemValue="2" />
+						<f:selectItem itemLabel="Treca" itemValue="3" />
+						<f:selectItem itemLabel="Cetvrta" itemValue="4" />
+					</p:selectOneMenu>
+					<h:commandButton value="Generisi izvestaj" action="#{reportsBean.generateReport('StudentiSaDepartmana')}"
+									 execute="@form"/>
+				</h:panelGrid>
+			</p:fieldset>
+
+		</h:form>
+	</f:view>
+</h:body>
+
+
+
+
+</html>

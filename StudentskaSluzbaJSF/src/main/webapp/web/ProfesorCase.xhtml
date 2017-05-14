@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+ 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Profesor</title>
+	<h:outputStylesheet name="css/styleProfesor.css" />
+</h:head>
+<h:body>
+	<f:view>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+
+			<div class="topPanel"
+				style="background-image: url('../images/lab.jpg')">
+				<div id="nameProfesor">
+					<p:outputLabel
+						value="Dobro došli #{userLoginView.imePrezimeProfesora}!"
+						class="imeProfesora" />
+				</div>
+			</div>
+
+
+			<!-- tabela sa filterom prijava -->
+			<p:fieldset legend="Ažuriranje prijave" style="margin-bottom:20px"
+				class="formPanel">
+				<p:outputLabel value="Mozete vrsiti pretragu po broju indeksa studenta"/><br/><br/>
+				<p:dataTable var="prj" value="#{profesorBean.svePrijave}" emptyMessage="Ne postoji takav student!" 
+						     editable="true" id="tabelaPrijave">
+					<f:facet name="header">
+           				Izaberite prijavu i upisite ocenu/bodove/status
+       				</f:facet>
+
+					<p:ajax event="rowEdit" listener="#{profesorBean.onRowEdit}" update=":form:msgs" />
+					<p:ajax event="rowEditCancel" listener="#{profesorBean.onRowCancel}" update=":form:msgs" />
+
+					<p:column headerText="ID">
+						<h:outputText value="#{prj.prijavaid}"/>
+					</p:column>
+
+					<!-- po indeksu mozemo da pretrazujemo prijave, po ostalim poljima radimo izmene -->
+					<p:column filterBy="#{prj.student.brindeksa}" filterMatchMode="contains"  footerText="filter polje">
+							<h:outputText value="#{prj.student.brindeksa}" />
+					</p:column>
+
+					<p:column headerText="Student">
+						<h:outputText value="#{prj.student.ime} #{prj.student.prezime}"/>
+					</p:column>
+
+					<p:column headerText="Predmet">
+						<h:outputText value="#{prj.predmet.naziv}"/>
+					</p:column>
+
+					<p:column headerText="Ocena">
+          				 <p:cellEditor>
+               				  <f:facet name="output">
+               				  	  <h:outputText value="#{prj.ocena}" />
+               				  </f:facet>
+     				          <f:facet name="input">
+     				          			<p:inputText value="#{profesorBean.ocena}" style="width:100%" label="Year"/>
+     				          </f:facet>
+          				 </p:cellEditor>
+       				</p:column>
+
+					<p:column headerText="Bodovi">
+          				 <p:cellEditor>
+               				  <f:facet name="output">
+               				  		<h:outputText value="#{prj.bodovi}" />
+               				  </f:facet>
+     				          <f:facet name="input">
+     				          		<p:inputText value="#{profesorBean.bodovi}" style="width:100%" label="Year"/>
+     				          </f:facet>
+          				 </p:cellEditor>
+       				</p:column>
+
+					<p:column headerText="Status">
+          				 <p:cellEditor>
+               				  <f:facet name="output">
+               				  		<h:outputText value="#{prj.status}" />
+               				  </f:facet>
+     				          <f:facet name="input">
+     				           		<h:selectOneMenu value="#{profesorBean.status}" style="width:100%">
+     				          			<f:selectItem itemLabel="polozen"     itemValue= "polozen"     />
+     				          			<f:selectItem itemLabel="nepolozen"   itemValue= "nepolozen"   />
+     				          			<f:selectItem itemLabel="nije izasao" itemValue= "nije izasao" />
+     				          		</h:selectOneMenu>
+     				          </f:facet>
+          				 </p:cellEditor>
+       				</p:column>
+
+					 <p:column style="width:32px" >
+         				  <p:rowEditor />
+      			 	 </p:column>
+				</p:dataTable>
+			</p:fieldset>
+
+
+		</h:form>
+	</f:view>
+</h:body>
+</html>
+

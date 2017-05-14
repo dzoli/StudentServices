@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Izvestaj</title>
+	<h:outputStylesheet name="css/styleIzvestaji.css" />
+</h:head>
+
+<h:body>
+	<f:view>
+		<h:form>
+			<div class="topPanel"
+				style="background-image: url('../images/lab.jpg')">
+				<div id="nameStudent">
+					<p:outputLabel class="imeStudenta"
+						value="Izvestaj o studentima sa departmana" />
+				</div>
+			</div>
+
+			<p:fieldset legend="Izvestaj" class="formPanel">
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Izaberite departman: " />
+					<p:selectOneMenu value="#{reportsBean.izabraniDep}">
+						<f:selectItems value="#{reportsBean.sviDepartmani1}" var="d" itemLabel="#{d.naziv}" itemValue="#{d.departmanid}" />
+					</p:selectOneMenu>
+					<h:commandButton value="Generisi izvestaj" action="#{reportsBean.generateReport('StudentiBrojPolozenih')}"
+									 execute="@form"/>
+				</h:panelGrid>
+			</p:fieldset>
+
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>

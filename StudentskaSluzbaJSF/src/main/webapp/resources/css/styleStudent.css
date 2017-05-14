@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #ffffe8;
+}
+
+.tabPredmeti{
+	padding: 2px;
+}
+
+.topPanel {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 70px;
+	border-bottom: solid;
+	border-bottom-width: 7px;
+	border-color: #585858;
+	font-size: 26px;
+}
+
+#nameStudent {
+	background: rgb(167, 167, 143);
+	opacity:0.5;
+	width: 60%;
+	margin: 0 auto;
+	margin-top: 15px;
+	border:solid;
+	border-radius: 7px;
+	text-align: center;
+}
+
+.imeStudenta{
+	color:green;
+	font-size: 35px;
+}
+
+.formPanel{
+	margin:20px;
+	margin-top: 90px;
+}

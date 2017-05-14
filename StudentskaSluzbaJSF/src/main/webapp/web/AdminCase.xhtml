@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="css/styleAdmin.css" />
+	<title>Admin</title>
+</h:head>
+<h:body>
+	<f:view>
+		<h:form>
+	
+			<p:growl id="msgs" showDetail="true" />
+
+			<div class="topPanel" style="background-image:url('../images/lab.jpg')">
+				<div class="nameAdmin">
+					 <p:outputLabel value="Admin"/> 
+				</div>
+			</div>
+			
+			<p:tabView class="choosePanel">
+				<p:tab title="Unos profesora" id="Prof">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Ime: "/>
+						<p:inputText value="#{adminBean.imeProf}"/>
+						<p:outputLabel value="Prezime: "/>
+						<p:inputText value="#{adminBean.prezimeProf}"/>
+						<p:outputLabel value="Datum rodjenja: "/>
+						<p:calendar  navigator="true" value="#{adminBean.datumRodjenjaProf}"/>
+						<p:outputLabel value="Adresa: "/>
+						<p:inputText value="#{adminBean.adresaProf}"/>
+						<p:outputLabel value="Zvanje: "/>
+						<p:inputText value="#{adminBean.zvanjeProf}"/>
+						<p:outputLabel value="Korisnicko ime: "/>
+						<p:inputText value="#{adminBean.korisnickoImeProf}">
+							<f:validator validatorId="korisnickoValidator"/>
+						</p:inputText>
+						<p:outputLabel value="Prisupna lozinka: "/>
+						<p:inputText value="#{adminBean.lozinkaProf}"/>
+						<p:outputLabel value="Izaberite Departman: " />
+						<p:selectOneMenu value="#{adminBean.izabraniDepartmanID}" style="width:220px">
+							<f:selectItems value="#{adminBean.sviDepartmani}" var="d" 
+										   itemLabel="#{d.naziv}" itemValue="#{d.departmanid}"/>
+						</p:selectOneMenu>
+						<p:commandButton value="Sacuvaj" action="#{adminBean.SacuvajProfesora()}"
+										 execute="@form" update="chooseProf, @form"/>
+					</h:panelGrid>
+				</p:tab>
+			
+				
+				<p:tab title="Unos predmeta" id="Pred">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Naziv predmeta: " />
+						<p:inputText value="#{adminBean.nazivPred}"/>
+						<p:outputLabel value="Tip predmeta: " />
+						<p:inputText value="#{adminBean.tipPred}"/>
+						<p:outputLabel value="ESPB: " />
+						<p:inputText value="#{adminBean.espbPred}"/>
+						<p:outputLabel value="Semestar: " />
+						<p:inputText value="#{adminBean.semestarPred}"/>
+						<p:outputLabel value="Godina slusanja: " />
+						<p:inputText value="#{adminBean.godinaSlusanjaPred}"/>
+						<p:outputLabel value="Izaberite profesora: " />
+						<p:selectOneMenu value="#{adminBean.izabraniProfesorIDPred}"  style="width:350px" id="chooseProf">
+							<f:selectItems value="#{adminBean.sviProfesori}" var="p"
+										   itemLabel="#{p.ime} #{p.prezime}"  itemValue="#{p.profesorid}"/>
+						</p:selectOneMenu>
+						
+						<p:commandButton value="Sacuvaj" action="#{adminBean.SacuvajPredmet()}"
+										 execute="@form" update="@form"/>
+					</h:panelGrid>
+				</p:tab>
+
+				
+				<p:tab title="Registruj studenta" id="Stud">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Ime: "/>
+						<p:inputText value="#{adminBean.imeStud}"/>
+						<p:outputLabel value="Prezime: "/>
+						<p:inputText value="#{adminBean.prezimeStud}"/>
+						<p:outputLabel value="Adresa: "/>
+						<p:inputText value="#{adminBean.adresaStud}"/>
+						<p:outputLabel value="Datum rodjenja: "/>
+						<p:calendar navigator="true" value="#{adminBean.datumRodjenjaStud}"/>
+						<p:outputLabel value="Godina studija: "/>
+						<p:selectOneMenu value="#{adminBean.godinaStudija}">
+							<f:selectItem itemLabel="Prva" itemValue="1"/>
+							<f:selectItem itemLabel="Druga" itemValue="2"/>
+							<f:selectItem itemLabel="Treca" itemValue="3"/>
+							<f:selectItem itemLabel="Cetvrta" itemValue="4"/>
+						</p:selectOneMenu>
+						<p:outputLabel value="Jedinstveni broj indeksa: "/> 
+						<p:inputText value="#{adminBean.brojIndeksa}">
+							<f:validator validatorId="indeksValidator"/>
+						</p:inputText>
+						<p:outputLabel value="Lozinka: "/>
+						<p:inputText value="#{adminBean.lozinkaStud}"/>
+						<p:outputLabel value="Izaberite departman: "/>
+						<p:selectOneMenu value="#{adminBean.izabraniDepartmanIDStudent}" style="width:220px">
+							<f:selectItems value="#{adminBean.sviDepartmani}" var="d" 
+										   itemLabel="#{d.naziv}" itemValue="#{d.departmanid}"/>
+						</p:selectOneMenu>
+						<p:commandButton value="Sacuvaj" action="#{adminBean.SacuvajStudenta()}"
+									     execute="@form" update="@form"/>
+					</h:panelGrid>
+				</p:tab>
+
+
+				<p:tab title="Izvestaji">
+					<p:accordionPanel>
+						<p:tab title="Izvestaj 1">
+          				 	 <h:panelGrid columns="2" cellpadding="10">
+									 <p:commandButton value="Izvestaj" 
+									 				  action="#{reportsBean.getIzvestaj1Page}"
+									 				  execute="@form"/>
+            			    		 <h:outputText value="Na osnovu odabrane godnine studija generise se izvestaj,
+            			    		 				      o svim studentima na toj godini, a podaci o studentima
+            			    		 				      grupisani su na izvestaju po departmanima." />
+            				 </h:panelGrid>
+        				</p:tab>
+						<p:tab title="Izvestaj 2">
+          				 	 <h:panelGrid columns="2" cellpadding="10">
+									 <p:commandButton value="Izvestaj" 
+									 				  action="#{reportsBean.getIzvestaj2Page}"
+									 				  execute="@form"/>
+            			    		 <h:outputText value="Na osnovu odabranog departmana generise se izvestaj
+            			    		 				      o svim studentima na tom departmanu i za svakog 
+            			    		 				      studenta prikazan je i broj polozenih ispita." />
+            				 </h:panelGrid>
+        				</p:tab>
+						<p:tab title="Izvestaj 3">
+          				 	 <h:panelGrid columns="2" cellpadding="10">
+									 <p:commandButton value="Izvestaj" 
+									 				  action="#{reportsBean.getIzvestaj3Page}"
+									 				  execute="@form"/>
+            			    		 <h:outputText value="Na osnovu odabranog departmana generise se izvestaj
+            			    		 				      o svim profesorima na tom departmanu i za svakog 
+            			    		 				      profesora prikazan je i broj predmeta koje predaje." />
+            				 </h:panelGrid>
+        				</p:tab>
+					</p:accordionPanel>
+				</p:tab>
+			</p:tabView>
+
+
+		</h:form>
+	</f:view>
+</h:body>
+
+</html>
